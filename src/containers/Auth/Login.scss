@@ -1,0 +1,86 @@
+.login-background {
+    background-image: linear-gradient(135deg, rgba(34, 193, 195, 1)0%, rgba(253, 187, 45, 1) 100%);
+    height: 100vh;
+    .login-container {
+        position: absolute;
+        left:0;
+        right:0;
+        top:0;
+        bottom: 0;
+        height: 450px;
+        width: 350px;
+        margin: auto;
+        border-radius: 16px;
+        background-color: rgb(253, 253, 253);
+        box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+
+        .login-content{
+            padding: 15px;
+
+            .login-input {
+                margin: 12px 0;
+                
+                .custom-form-password {
+                    position: relative;
+
+                    .icon-eye {
+                        position: absolute;
+                        right:4px;
+                        top:12px;
+                    }
+                }
+            }
+
+            .btn-login{
+                background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187,45, 1) 100%);
+                font-size: 20px;
+                width: 50%;
+                position:relative;
+                left: 25%;
+                border: none;
+                height: 36px;
+                color:rgb(253, 253, 253);
+                border-radius:20px;
+            }
+
+            .forgot-password {
+                font-size: 12px;
+            }
+
+            .social-login{
+                position: relative;
+                display: flex;
+                width: 30%;
+                left: 35%;
+                justify-content: space-around;
+                .icon-facebook,
+                .icon-google {
+                    font-size: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width:42px;
+                    height: 42px;
+                    border-radius: 50%;
+                }
+                
+                .icon-facebook {
+                    background-color: #1877f2;
+                    color:rgb(253, 253, 253)
+                }
+
+                .icon-google {
+                    background-color: #fb3d3d;
+                    color:rgb(253, 253, 253);
+                }
+            }
+        }
+        
+        .text-login{
+            padding-top: 10px;
+            font-weight: 600;
+            font-size:24px;
+            text-align: center;
+        }
+    }
+}
