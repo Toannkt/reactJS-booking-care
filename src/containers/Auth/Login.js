@@ -5,6 +5,7 @@ import {handleLoginApi} from '../../services/userService'
 
 import * as actions from "../../store/actions";
 import './Login.scss';
+import { userLoginSuccess } from '../../store/actions';
 
 
 class Login extends Component {
@@ -42,7 +43,7 @@ class Login extends Component {
                 })
             }
             if(data && data.errCode === 0){
-                userLoginSuccess(data);
+                this.props.userLoginSuccess(data);
                 
                 console.log('Login success');
             }
@@ -140,9 +141,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
+        addUserSuccess: (userInfo) => dispatch(actions.addUserSuccess(userInfo)),
+        userLoginFail: () => dispatch(actions.userLoginFail()),
         userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
     };
 };
 

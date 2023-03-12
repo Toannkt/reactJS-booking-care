@@ -1,6 +1,9 @@
 /*
  * General styles
  */
+ body {
+  overflow-y: scroll;
+ }
  body, html {
     background-image: "#fff";
     background-repeat: no-repeat;
@@ -8,7 +11,6 @@
     font-family: $fontmain;
     font-size: $base-size - 2px;
     height: 100vh;
-    overflow: hidden;
 }
 
 .btn {

@@ -1,0 +1,89 @@
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+.users-container {
+  .add-new-user {
+    margin-bottom: 12px;
+    border-radius: none;
+  }
+
+  button.btn-create {
+    font-size: 1.4rem;
+    border: none;
+    background-color: #1e9ced;
+    border-radius: 3px;
+    color: white;
+    .icon-plus {
+      font-size: 1rem;
+      margin: 0 6px 0 12px;
+    }
+  }
+}
+
+.modal-user-container {
+    .modal-header {
+      padding: 0 10px;
+      height: 35px;
+      background-color: #1e9ced !important;
+
+      .close {
+        padding: 0 6px;
+        background-color: #1e9ced;
+        border: none;
+        font-size: 1.6rem;
+        line-height: revert;
+        color: white;
+      }
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: space-around;
+      input {
+        width: 300px;
+        padding: 8px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        input {
+          outline: 1px solid #d1e6fa;
+          background-color: white;
+        }
+      }
+    }
+
+    .modal-footer {
+      button.btn {
+        display: flex ;
+        align-items: center ;
+        font-weight: 600;
+        padding: 8px;
+      }
+    }
+}
