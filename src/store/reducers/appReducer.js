@@ -7,7 +7,7 @@ const initContentOfConfirmModal = {
     dataFunc: null
 }
 
-const initialState = {
+const initialState = {  
     started: true,
     language: 'vi',
     systemMenuPath: '/system/user-manage',
@@ -30,6 +30,12 @@ const appReducer = (state = initialState, action) => {
                     ...state.contentOfConfirmModal,
                     ...action.contentOfConfirmModal
                 }
+            }
+        case actionTypes.CHANGE_LANGUAGE: 
+            console.log('check from redux appRedcer: ', action)
+            return {
+                ...state,
+                language: action.language
             }
         default:
             return state;

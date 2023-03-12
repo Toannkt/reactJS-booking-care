@@ -1,54 +1,65 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
+import {LANGUAGES} from '../../utils/constant'
+import {changeLanguageApp} from '../../store/actions'
 import './HomeHeader.scss'
 class HomeHeader extends Component {
-
+    changeLanguage = (language) => {
+        this.props.changeLanguage(language);
+    }
     render() {
-        
+        let language = this.props.lang;
         return (
             <React.Fragment>
                 <div className="home-header-container">
                     <div className="home-header-content">
                         <div className="left-content">
-                            <i class="fas fa-bars"></i>
+                            <i className="fas fa-bars"></i>
                             <div className="header-logo"></div>
                         </div>
                         <div className="center-content">
                             <div className="child-content">
-                                <div><b>Chuyên Khoa</b></div>
-                                <div className="subs-title">Tìm bác sĩ theo chuyên khoa</div>
+                                <div><b><FormattedMessage id={"homeheader.speciality"}/></b></div>
+                                <div className="subs-title"><FormattedMessage id={"homeheader.searchdoctor"}/></div>
                             </div>
                             <div className="child-content">
-                                <div><b>Cơ sở y tế</b></div>
-                                <div className="subs-title">Chọn bệnh viện phòng khám</div>
+                                <div><b><FormattedMessage id={"homeheader.health-facilties"}/></b></div>
+                                <div className="subs-title"><FormattedMessage id={"homeheader.choose-room"}/></div>
                             </div>
                             <div className="child-content">
-                                <div><b>Bác sĩ</b></div>
-                                <div className="subs-title">Chọn bác sĩ giỏi</div>
+                                <div><b><FormattedMessage id={"homeheader.doctor"}/></b></div>
+                                <div className="subs-title"><FormattedMessage id={"homeheader.choose-good-doctor"}/></div>
                             </div>
                             <div className="child-content">
-                                <div><b>Gói khám</b></div>
-                                <div className="subs-title">Khám sức khỏe tổng quát</div>
+                                <div><b><FormattedMessage id={"homeheader.checkup-pakage"}/></b></div>
+                                <div className="subs-title"><FormattedMessage id={"homeheader.genaral-health-check"}/></div>
                             </div>
                         </div>
                         <div className="right-content">
                             <div className="support">
-                                <i class="fas fa-question-circle"> Hỗ trợ</i>
+                                <i className="fas fa-question-circle"> <FormattedMessage id={"homeheader.support"}/></i>
                             </div>
-                            <div className="flag">VN</div>
+                            <div className="language">
+                                <span className={language === LANGUAGES.VI ? 'language-vi action' : 'language-vi'} onClick={()=>{this.changeLanguage(LANGUAGES.VI)}}>VI</span>
+                            </div>  
+                            <div className="language">
+                                <span className={language === LANGUAGES.EN ? 'language-en action' : 'language-en'} onClick={()=>{this.changeLanguage(LANGUAGES.EN)}}>EN</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="home-header-banner">
                     <div className="search">
-                        <h1>Nền tảng y tế 
+                        <h1>
+                            <FormattedMessage id={"banner.medical-background"}/>
                             <br></br>
-                            <b>chăm sóc sức khỏe toàn diện</b>
+                            <b><FormattedMessage id={"banner.comprehensive-health-care"}/></b>
                         </h1>
                         <div className="on-search">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Tìm kiếm"></input>
+                            <i className="fas fa-search"></i>
+                            <input type="text"></input>
                         </div>
                     </div>
                     <div className="content-down">
@@ -56,73 +67,73 @@ class HomeHeader extends Component {
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2021/12/08/133537-khamchuyenkhoa.png")`}}></div>
-                                    Khám
+                                    <FormattedMessage id={"banner.examination"} />
                                     <br></br>
-                                    Chuyên khoa
+                                    <FormattedMessage id={"banner.speciality"} />
                                 </a>
                             </div>
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2021/12/08/133657-khamtuxa.png")`}}></div>
-                                    Khám
+                                    <FormattedMessage id={"banner.examination"} />
                                     <br></br>
-                                    Từ xa
+                                    <FormattedMessage id={"banner.from-afar"} />
                                 </a>
                             </div>
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2021/12/08/133744-khamtongquat.png")`}}></div>
-                                    Khám
+                                    <FormattedMessage id={"banner.examination"} />
                                     <br></br>
-                                    Tổng quát
+                                    <FormattedMessage id={"banner.genarality"} />
                                 </a>
                             </div>
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2021/12/08/133744-dichvuxetnghiem.png")`}}></div>
-                                    Xét nghiệm
+                                    <FormattedMessage id={"banner.test"} />
                                     <br></br>
-                                    Y học
+                                    <FormattedMessage id={"banner.medicine"} />
                                 </a>
                             </div>
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2021/12/08/133744-suckhoetinhthan.png")`}}></div>
-                                    Sức khỏe
+                                    <FormattedMessage id={"banner.health"} />
                                     <br></br>
-                                    Tinh thần
+                                    <FormattedMessage id={"banner.spirit"} />
                                 </a>
                             </div>
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2021/12/08/133744-suckhoetinhthan.png")`}}></div>
-                                    Khám
+                                    <FormattedMessage id={"banner.examination"} />
                                     <br></br>
-                                    Nha khoa
+                                    <FormattedMessage id={"banner.dentistry"} />
                                 </a>
                             </div>
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2022/05/16/151930-phau-thuat.jpg")`}}></div>
-                                    Gói
+                                    <FormattedMessage id={"banner.pakage"} />
                                     <br></br>
-                                    Phẫu thuật
+                                    <FormattedMessage id={"banner.surgery"} />
                                 </a>
                             </div>
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2021/12/08/133744-khamtainha.png")`}}></div>
-                                    Sản phẩm
+                                    <FormattedMessage id={"banner.product"} />
                                     <br></br>
-                                    Y tế
+                                    <FormattedMessage id={"banner.medical"} />
                                 </a>
                             </div>
                             <div className="option-child">
                                 <a href="/" className="open-option">
                                     <div className="icon-option" style={{backgroundImage: `url("https://cdn.bookingcare.vn/fo/2022/07/29/101157-icon-lich-su.jpg")`}}></div>
-                                    Sức khỏe
+                                    <FormattedMessage id={"banner.health"} />
                                     <br></br>
-                                    Doanh nghiệp
+                                    <FormattedMessage id={"banner.enterprise"} />
                                 </a>
                             </div>
                         </div>
@@ -143,6 +154,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguage: (language)=> dispatch(changeLanguageApp(language))
     };
 };
 

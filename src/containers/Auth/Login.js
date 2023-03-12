@@ -90,7 +90,7 @@ class Login extends Component {
                             <div className="col-12" style={{color:'red'}}>
                                 {this.state.errMessage}
                             </div>
-                            <i class="fas fa-eye-slash icon-eye"
+                            <i className="fas fa-eye-slash icon-eye"
                                 onClick={() => {
                                     this.handleShowPassword(this.state.isShowPassword)
                                     const iconEye = document.querySelector('.icon-eye');
@@ -123,7 +123,7 @@ class Login extends Component {
                         </div>
                         <div className="col-12 social-login">
                             <i className="fab fa-facebook-f icon-facebook"></i>
-                            <i class="fab fa-google-plus-g icon-google"></i>
+                            <i className="fab fa-google-plus-g icon-google"></i>
                         </div>
                     </div>
                 </div>
