@@ -1,0 +1,88 @@
+.predict-container {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    margin-top: 50px;
+
+    .predict-header {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px 0;
+        .title-section {
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .btn-section {
+            background: #ebebeb;
+            text-transform: uppercase;
+            color: #282e41;
+            border: none;
+            padding: 12px;
+
+            &:hover {
+                color: #fff;
+                background: #f7d800;
+            }
+        }
+    }
+    .predict-body {
+        .slick-slider {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+            .slick-list {
+                height: 100%;
+                width: 83.2%;
+                .slick-track {
+                    height: 100%;
+                    .slick-slide {
+                        width: 264px !important;
+                        height: 202px !important;
+                        background-color: #fff;
+                        border: 1px solid #eee;
+                        margin: 6px 20px;
+                    }
+                }
+            }
+            .slick-next {   
+                position: absolute !important;
+                width: 48px !important;
+                height: 40px !important;
+                right: 108px !important;
+                z-index:999;
+                background-color: #ff8612;
+            }
+            
+            .slick-prev {
+                position: absolute !important;
+                width: 48px !important;
+                height: 40px !important;
+                left: 108px !important;
+                background-color: #ff8612;
+                z-index: 999;
+            }
+        }
+        .option {
+            .wrap-option{
+                text-decoration: none;
+                color: #333;
+                .image-description {
+                    height: 154px;
+                    margin-bottom:4px;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+                .text-description {
+                    text-decoration: none;
+                    &:hover {
+                        color: #45c3d2;
+                    }
+                }
+            }
+        }
+    }
+}

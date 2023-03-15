@@ -1,0 +1,17 @@
+.footer{
+    height: 80px;
+    margin-bottom: 10px;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .content-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        h2 {
+            margin: 0;
+        }
+    }
+}

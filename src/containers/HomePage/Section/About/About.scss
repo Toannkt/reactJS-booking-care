@@ -1,0 +1,32 @@
+.section-about {
+    border: 1px solid green;
+    margin: 40px 40px;
+    height: 600px;
+
+    .section-about-header {
+        text-transform: uppercase;
+        padding: 4px 40px;
+        font-weight: 600;
+        font-size: 1.4rem;
+
+    }
+    .section-about-content {
+        display: flex;
+        .content-left {
+            width: 828px;
+            padding: 20px 40px;
+        }
+        .content-right{
+            width: 554px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .text-description {
+                background-color: #f5f5f5;
+                font-size: 1.2rem;
+                font-style: italic;
+                font-family: Times New Roman Times;
+            }
+        }
+    }
+}
