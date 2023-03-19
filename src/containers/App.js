@@ -13,11 +13,11 @@ import Home from "../routes/Home";
 import HomePage from "./HomePage/HomePage.js";
 // import Login from '../routes/Login';
 import Login from "./Auth/Login";
-import Header from "./Header/Header";
+// import Header from "./Header/Header";
 import System from "../routes/System";
 import { CustomToastCloseButton } from "../components/CustomToast";
 import CustomScrollbars from "../components/CustomScrollbars";
-import ConfirmModal from "../components/ConfirmModal";
+// import ConfirmModal from "../components/ConfirmModal";
 
 class App extends Component {
   handlePersistorState = () => {

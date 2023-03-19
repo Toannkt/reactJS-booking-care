@@ -1,0 +1,72 @@
+.user-redux-container {
+    .title {
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        color:aqua;
+    }
+    .container {
+        .form-redux{
+            .wrap-form{
+                display: flex;
+                flex-direction: column;
+                justify-items: center;
+                align-items: center;
+                margin:auto;
+                .header-form {
+                    padding-top: 10px;
+                }
+                .form-password,
+                .form-fullName,
+                .form-info,
+                .form-email {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 12px 0;
+                }
+                .decentralization {
+                    display: flex;
+                    justify-content: space-between;
+                    .col-md-3 {
+                        .wrap-choose-avatar {
+                            display: flex;
+                            .icon-upload {
+                                font-size: 1.6rem;
+                                padding:16px;
+                                cursor: pointer;
+                                background-color: #ddd;
+                                &:hover {
+                                    opacity: 0.8   ;
+                                }
+                            }
+                            .contain-avatar{
+                                width:100%;
+                                box-shadow: 1px 1px 2px rgb(221, 221, 221);
+                                margin-left:24px;
+                                .name-image {
+                                    display: flex;
+                                    justify-content: center;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                                .avatar {
+                                    background-size: 40px;
+                                    background-position: center center;
+                                    background-repeat: no-repeat;
+                                    height: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .submit {
+                position: relative;
+                left: 270px;
+                top: 24px;
+                .form-check{
+                    margin-bottom:12px;
+                }
+            }
+        }
+    }
+}

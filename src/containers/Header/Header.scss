@@ -12,7 +12,9 @@
         display: flex;
         align-items: center;
         padding-right:10px;
-        border-left: 1px solid #f5f5f5;
+        .welcome {
+            margin-right: 10px;
+        }
         .btn-logout {
             color: $common-text-color;
             line-height: 40px;
