@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import CommonUtils from '../../../utils/CommonUtils';
 import { LANGUAGES } from '../../../utils/constant';
 import * as actions from '../../../store/actions';
 import Lightbox from 'react-image-lightbox';
@@ -16,8 +17,10 @@ class UserRedux extends Component {
             arrRole: [],
             previewImage: '',
             isOpen: false,
+            isUpdate: false,
             photoIndex: 0,
 
+            id: -1,
             email: '',
             password: '',
             rePassword: '',
@@ -43,24 +46,27 @@ class UserRedux extends Component {
             let dataGender = this.props.dataGender;
             this.setState({
                 arrGender: this.props.dataGender,
-                gender: dataGender ? dataGender[0].key : '',
+                gender: dataGender ? dataGender[0].keyMap : '1',
             });
         }
         if (prevProps.dataPosition !== this.props.dataPosition) {
             let dataPosition = this.props.dataPosition;
             this.setState({
                 arrPosition: this.props.dataPosition,
-                position: dataPosition ? dataPosition[0].key : '',
+                position: dataPosition ? dataPosition[0].keyMap : '',
             });
         }
         if (prevProps.dataRole !== this.props.dataRole) {
             let dataRole = this.props.dataRole;
             this.setState({
                 arrRole: this.props.dataRole,
-                role: dataRole ? dataRole[0].key : '',
+                role: dataRole ? dataRole[0].keyMap : '',
             });
         }
         if (prevProps.users !== this.props.users) {
+            let arrGender = this.props.dataGender;
+            let arrPosition = this.props.dataPosition;
+            let arrRole = this.props.dataRole;
             this.setState({
                 email: '',
                 password: '',
@@ -69,22 +75,25 @@ class UserRedux extends Component {
                 lastName: '',
                 address: '',
                 phoneNumber: '',
-                gender: '',
-                role: '',
-                position: '',
+                gender: arrGender && arrGender.length >0 ? arrGender[0].keyMap : '',
+                role: arrRole && arrRole.length >0 ? arrRole[0].keyMap : '',
+                position: arrPosition && arrPosition.length >0 ? arrPosition[0].keyMap : '',
                 avatar: '',
+                previewImage: '',
             });
         }
     }
 
-    handleChooseAvatar = (event) => {
+    handleChooseAvatar = async (event) => {
         // const btn = document.querySelector("#choose-avatar");
-        let files = event.target.files[0];
-        if (files) {
-            const objectURL = URL.createObjectURL(files);
+        console.log("chossing image")
+        let file = event.target.files[0];
+        if (file) {
+            let base64 = await CommonUtils.getBase64(file);
+            const objectURL = URL.createObjectURL(file);
             this.setState({
                 previewImage: objectURL,
-                avatar: files,
+                avatar: base64,
             });
         }
     };
@@ -117,6 +126,7 @@ class UserRedux extends Component {
         const check = this.checkPassword(this.state['password'], this.state['rePassword']);
         if (check === false) {
             alert('Please enter password exactly');
+            isValid = false;
         }
         return isValid;
     };
@@ -129,20 +139,79 @@ class UserRedux extends Component {
     handleSubmit = () => {
         const check = this.handleCheckIvalide();
         if (check === false) return;
-        this.props.createNewUser({
-            email: this.state.email,
-            password: this.state.password,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            address: this.state.address,
-            phoneNumber: this.state.phoneNumber,
-            gender: this.state.gender,
-            roleId: this.state.role,
-            positionId: this.state.position,
-            image: this.state.previewImage,
+        if (this.state.isUpdate === false) {
+            this.props.createNewUser({
+                email: this.state.email,
+                password: this.state.password,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                address: this.state.address,
+                phoneNumber: this.state.phoneNumber,
+                gender: this.state.gender,
+                roleId: this.state.role,
+                positionId: this.state.position,
+                image: this.state.avatar,
+            });
+        }
+        if (this.state.isUpdate === true) {
+            this.props.updateUserStart({
+                id: this.state.id,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                address: this.state.address,
+                phoneNumber: this.state.phoneNumber,
+                gender: this.state.gender,
+                roleId: this.state.role,
+                positionId: this.state.position,
+                image: this.state.avatar,
+                // previewImage: this.state.previewImage,
+            });
+            this.setState({ isUpdate: false });
+        }
+    };
+
+    userUpdate = (userData) => {
+        // console.log('check user data take from child:', userData);
+        let imageBase64 = '';
+        if (userData.image) {
+            imageBase64 = new Buffer(userData.image, 'base64').toString('binary');
+        }
+        console.log(userData.image)
+        console.log(imageBase64);
+        this.setState({
+            isUpdate: true,
+            id: userData.id,
+            email: userData.email,
+            firstName: userData.firstName,
+            password: '*******',
+            rePassword: '*******',
+            lastName: userData.lastName,
+            address: userData.address,
+            phoneNumber: userData.phoneNumber,
+            gender: userData.gender,
+            role: userData.roleId,
+            position: userData.positionId,
+            previewImage: imageBase64,
         });
     };
 
+    handleCancelChangeUser = () => {
+        this.setState({
+            isUpdate: false,
+            email: '',
+            password: '',
+            rePassword: '',
+            firstName: '',
+            lastName: '',
+            address: '',
+            phoneNumber: '',
+            gender: '',
+            role: '',
+            position: '',
+            avatar: '',
+            previewImage: '',
+        });
+    };
     render() {
         const lang = this.props.lang;
         const genders = this.props.dataGender;
@@ -155,6 +224,7 @@ class UserRedux extends Component {
         const isLoadingRole = this.props.isLoadingRole;
 
         const {
+            isUpdate,
             email,
             password,
             rePassword,
@@ -165,8 +235,9 @@ class UserRedux extends Component {
             gender,
             role,
             position,
-            image,
+            avatar,
         } = this.state;
+        // console.log('isUpdate: ', isUpdate);
         return (
             <div className="user-redux-container">
                 <div className="title">
@@ -188,6 +259,7 @@ class UserRedux extends Component {
                                                 id="inputEmail"
                                                 placeholder="Email"
                                                 value={email}
+                                                disabled={isUpdate}
                                                 onChange={(event) => this.handleChangeInput(event, 'email')}
                                             />
                                         </div>
@@ -203,6 +275,7 @@ class UserRedux extends Component {
                                                 id="inputPassword4"
                                                 placeholder="Password"
                                                 value={password}
+                                                disabled={isUpdate}
                                                 onChange={(event) => this.handleChangeInput(event, 'password')}
                                             />
                                         </div>
@@ -216,6 +289,7 @@ class UserRedux extends Component {
                                                 id="inputReEnterPassword4"
                                                 placeholder="Password"
                                                 value={rePassword}
+                                                disabled={isUpdate}
                                                 onChange={(event) => this.handleChangeInput(event, 'rePassword')}
                                             />
                                         </div>
@@ -292,7 +366,7 @@ class UserRedux extends Component {
                                                     genders.length > 0 &&
                                                     genders.map((item, index) => {
                                                         return (
-                                                            <option key={index} value={item.key}>
+                                                            <option key={index} value={item.keyMap}>
                                                                 {lang === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                             </option>
                                                         );
@@ -312,7 +386,7 @@ class UserRedux extends Component {
                                             >
                                                 {roles.map((item, index) => {
                                                     return (
-                                                        <option key={index} value={item.key}>
+                                                        <option key={index} value={item.keyMap}>
                                                             {lang === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                         </option>
                                                     );
@@ -332,7 +406,7 @@ class UserRedux extends Component {
                                             >
                                                 {positions.map((item, index) => {
                                                     return (
-                                                        <option key={index} value={item.key}>
+                                                        <option key={index} value={item.keyMap}>
                                                             {lang === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                         </option>
                                                     );
@@ -373,18 +447,31 @@ class UserRedux extends Component {
                                             Check me out
                                         </label>
                                     </div>
-                                    <button
-                                        type="button"
-                                        className="btn btn-primary"
-                                        onClick={() => this.handleSubmit()}
-                                    >
-                                        Create User Redux
-                                    </button>
+                                    <div className="wrap-button">
+                                        <button
+                                            type="button"
+                                            className={`btn ${
+                                                isUpdate === true ? 'save-changes-user' : 'create-user btn-primary'
+                                            }`}
+                                            onClick={() => this.handleSubmit()}
+                                        >
+                                            {isUpdate === true ? 'Save changes user' : 'Create user'}
+                                        </button>
+                                        {isUpdate && (
+                                            <button
+                                                onClick={() => this.handleCancelChangeUser()}
+                                                type="button"
+                                                className="cancel"
+                                            >
+                                                Cancel
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
                             </form>
                         </div>
                         <div className="table-manage-user col-md-10">
-                            <TableManageUser />
+                            <TableManageUser takeUserUpdate={this.userUpdate} />
                         </div>
                     </div>
                 </div>
@@ -422,6 +509,7 @@ const mapDispatchToProps = (dispatch) => {
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
         createNewUser: (data) => dispatch(actions.fetchCreateUserStart(data)),
+        updateUserStart: (user) => dispatch(actions.updateUserStart(user)),
     };
 };
 

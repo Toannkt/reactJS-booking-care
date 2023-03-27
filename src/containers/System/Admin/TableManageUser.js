@@ -9,6 +9,7 @@ class TableManageUser extends Component {
         super(props);
         this.state = {
             users: [],
+            isUpdate: false,
         };
     }
 
@@ -28,9 +29,12 @@ class TableManageUser extends Component {
         this.props.deleteUser(userId);
     };
 
+    handleUpdate = (user) => {
+        console.log(user);
+        this.props.takeUserUpdate(user);
+    };
     render() {
         const users = this.props.users;
-
         return (
             <div className="wrap-table">
                 <table id="customers">
@@ -58,7 +62,7 @@ class TableManageUser extends Component {
                                             <td>{user.firstName}</td>
                                             <td>
                                                 <div className="d-flex justify-content-around">
-                                                    <button>
+                                                    <button onClick={() => this.handleUpdate(user)}>
                                                         <i className="fas fa-pencil-alt"></i>
                                                     </button>
                                                     <button onClick={() => this.hanleDeleteUser(user.id)}>

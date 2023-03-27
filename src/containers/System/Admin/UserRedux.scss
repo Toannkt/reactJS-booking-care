@@ -65,6 +65,37 @@
                 .form-check{
                     margin-bottom:12px;
                 }
+                .wrap-button {
+                    display: flex;
+                    .create-user {
+                        padding: 10px;
+                        display: flex;
+                        align-items: center;
+                        font-weight: 500;
+                    }
+                    .save-changes-user {
+                        padding: 10px;
+                        display: flex;
+                        align-items: center;
+                        font-weight: 500;
+                        background-color: rgb(237, 228, 68);
+
+                        &:hover {
+                            background-color: rgb(255, 242, 0);
+
+                        }
+                    }
+                    .cancel {
+                        border: none;
+                        margin-left: 10px;
+                        color: white;
+                        background-color: #ff4242;
+
+                        &:hover {
+                            background-color: #fe2525;
+                        }
+                    }
+                }
             }
         }
     }

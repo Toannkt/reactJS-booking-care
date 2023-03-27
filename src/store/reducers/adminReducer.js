@@ -7,6 +7,7 @@ const initialState = {
     role: [],
     position: [],
     users: [],
+    topArrDoctor: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -24,7 +25,7 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             };
-        case actionTypes.FETCH_GENDER_FAIED:
+        case actionTypes.FETCH_GENDER_FAIlED:
             console.log('check fetch gender failed:', action);
             state.isLoadingGender = true;
             return {
@@ -43,7 +44,7 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             };
-        case actionTypes.FETCH_POSITON_FAILED:
+        case actionTypes.FETCH_POSITION_FAILED:
             console.log('Check fetch position failure: ', action);
             state.isLoadingPosition = true;
             return {
@@ -68,6 +69,21 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             };
+        case actionTypes.CREATE_USER_START:
+            console.log('Create user start: ', action);
+            return {
+                ...state,
+            };
+        case actionTypes.CREATE_USER_SUCCESS:
+            // console.log('Create user success: ', action);
+            return {
+                ...state,
+            };
+        case actionTypes.CREATE_USER_FAILED:
+            console.log('Create user failed: ', action);
+            return {
+                ...state,
+            };
         // get all user
         case actionTypes.FETCH_ALL_USER_START:
             console.log('Check fetch all user start: ', action);
@@ -80,18 +96,52 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             };
+        // DELETE USER
         case actionTypes.DELETE_USER_START:
             console.log('Delete user start: ', action);
             return {
                 ...state,
             };
         case actionTypes.DELETE_USER_SUCCESS:
-            console.log('Delete user success: ', action);
+            // console.log('Delete user success: ', action);
             return {
                 ...state,
             };
         case actionTypes.DELETE_USER_FAILED:
             console.log('Delete user failed: ', action);
+            return {
+                ...state,
+            };
+        // UPDATE USER
+        case actionTypes.UPDATE_USER_START:
+            console.log('Update user start: ', action);
+            return {
+                ...state,
+            };
+        case actionTypes.UPDATE_USER_SUCCESS:
+            // console.log('Update user success: ', action);
+            return {
+                ...state,
+            };
+        case actionTypes.UPDATE_USER_FAILED:
+            console.log('Update user failed: ', action);
+            return {
+                ...state,
+            };
+        // FETCH TOP DOCTOR:
+        case actionTypes.GET_TOP_DOCTOR_START:
+            console.log('Fetch top doctor start: ', action);
+            return {
+                ...state,
+            };
+        case actionTypes.GET_TOP_DOCTOR_SUCCESS:
+            state.topArrDoctor = action.dataDoctor;
+            console.log('Fetch top doctor success: ', action);
+            return {
+                ...state,
+            };
+        case actionTypes.GET_TOP_DOCTOR_FAILED:
+            console.log('Fetch top doctor failed: ', action);
             return {
                 ...state,
             };

@@ -79,6 +79,8 @@
         "choose-role": "Choose role",
         "image": "Image avatar",
         "save": "Save user",
-        "title": "Learn CRUD with Redux"
+        "title": "Learn CRUD with Redux",
+        "outstanding-doctor": "List of outstanding doctors last week",
+        "more-infor": "See more"
     }
 }
