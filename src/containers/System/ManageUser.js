@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 // import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import './UserManage.scss';
+import './ManageUser.scss';
 import './TableUser.scss';
 import ModalUser from './ModalUser';
 import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/emitter';
 import { getAllusers, createNewUserService, deleteUserService, editUserService } from '../../services/userService';
-class UserManage extends Component {
+class ManageUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -192,4 +192,4 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserManage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUser);

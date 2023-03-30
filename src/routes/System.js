@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import UserManage from '../containers/System/UserManage';
-import UserRedux from '../containers/System/Admin/UserRedux';
-import UserAdmin from '../containers/System/UserAdmin';
-import UserDoctor from '../containers/System/UserDoctor';
+import ManageUser from '../containers/System/ManageUser';
+import CrudRedux from '../containers/System/Admin/CrudRedux/CrudRedux';
+import ManageAdmin from '../containers/System/ManageAdmin';
+import ManageDoctor from '../containers/System/Admin/ManageDoctor/ManageDoctor';
 import Header from '../containers/Header/Header';
 class System extends Component {
     render() {
@@ -15,10 +15,10 @@ class System extends Component {
                 <div className="system-container">
                     <div className="system-list">
                         <Switch>
-                            <Route path="/system/user-manage" component={UserManage} />
-                            <Route path="/system/user-redux" component={UserRedux} />
-                            <Route path="/system/user-admin" component={UserAdmin} />
-                            <Route path="/system/user-doctor" component={UserDoctor} />
+                            <Route path="/system/manage-users" component={ManageUser} />
+                            <Route path="/system/crud-redux" component={CrudRedux} />
+                            <Route path="/system/manage-admins" component={ManageAdmin} />
+                            <Route path="/system/manage-doctors" component={ManageDoctor} />
                             <Route
                                 component={() => {
                                     return <Redirect to={systemMenuPath} />;

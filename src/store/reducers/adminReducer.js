@@ -8,6 +8,7 @@ const initialState = {
     position: [],
     users: [],
     topArrDoctor: [],
+    allDoctor: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -136,12 +137,45 @@ const adminReducer = (state = initialState, action) => {
             };
         case actionTypes.GET_TOP_DOCTOR_SUCCESS:
             state.topArrDoctor = action.dataDoctor;
-            console.log('Fetch top doctor success: ', action);
+            // console.log('Fetch top doctor success: ', action);
             return {
                 ...state,
             };
         case actionTypes.GET_TOP_DOCTOR_FAILED:
             console.log('Fetch top doctor failed: ', action);
+            return {
+                ...state,
+            };
+        //GET ALL DOCTOR
+        case actionTypes.FETCH_ALL_DOCTOR_START:
+            console.log('fetch all dotor start:', action);
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALL_DOCTOR_SUCCESS:
+            // console.log('fetch all dotor success:', action);
+            state.allDoctor = action.data;
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALL_DOCTOR_FAILED:
+            console.log('fetch all dotor failed:', action);
+            return {
+                ...state,
+            };
+        // POST DETAIL DOCTOR
+        case actionTypes.CREATE_DETAIL_DOCTOR_START:
+            console.log('Create detail doctor started:', action);
+            return {
+                ...state,
+            };
+        case actionTypes.CREATE_DETAIL_DOCTOR_SUCCESS:
+            console.log('Create detail doctor succeeded:', action);
+            return {
+                ...state,
+            };
+        case actionTypes.CREATE_DETAIL_DOCTOR_FAILED:
+            console.log('Create detail doctor failed:', action);
             return {
                 ...state,
             };

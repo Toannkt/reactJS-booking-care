@@ -1,5 +1,5 @@
 // import { get } from "lodash";
-import { escapeRegExp } from 'lodash';
+// import { escapeRegExp } from 'lodash';
 import { toast } from 'react-toastify';
 import {
     getAllCodeService,
@@ -8,6 +8,8 @@ import {
     deleteUserService,
     editUserService,
     getTopDoctorHomeService,
+    getAllDoctor,
+    createDetailDoctor,
 } from '../../services/userService';
 import actionTypes from './actionTypes';
 
@@ -236,4 +238,61 @@ export const fetchTopDoctorSuccess = (data) => ({
 
 export const fetchTopDoctorFailed = () => ({
     type: actionTypes.GET_TOP_DOCTOR_FAILED,
+});
+
+// GET ALL DOCTOR
+export const fetchAllDoctorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let doctors = await getAllDoctor();
+            // console.log('doctor start: ', doctors);
+            if (doctors && doctors.errCode === 0) {
+                dispatch(fetchAllDoctorSuccess(doctors.data));
+            } else {
+                dispatch(fetchAllDoctorFailed());
+            }
+        } catch (e) {
+            console.log(e);
+            dispatch(fetchAllDoctorFailed());
+        }
+    };
+};
+
+export const fetchAllDoctorSuccess = (doctors) => ({
+    type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+    data: doctors,
+});
+
+export const fetchAllDoctorFailed = () => ({
+    type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
+});
+
+//CREATE DETAIL DOCTOR
+
+export const createDetailDoctorStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            setTimeout(async () => {
+                let res = await createDetailDoctor(data);
+                if (res && res.errCode === 0) {
+                    toast.success('Created detail doctor successfully!');
+                    dispatch(createDetailDoctorSuccess());
+                } else {
+                    toast.warning('Please check the information again!');
+                    dispatch(createDetailDoctorFailed());
+                }
+            });
+        } catch (e) {
+            toast.error('Please check the information again!');
+            dispatch(createDetailDoctorFailed());
+        }
+    };
+};
+
+export const createDetailDoctorSuccess = () => ({
+    type: actionTypes.CREATE_DETAIL_DOCTOR_SUCCESS,
+});
+
+export const createDetailDoctorFailed = () => ({
+    type: actionTypes.CREATE_DETAIL_DOCTOR_FAILED,
 });

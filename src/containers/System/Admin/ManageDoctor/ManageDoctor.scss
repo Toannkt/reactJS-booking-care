@@ -1,0 +1,28 @@
+.manage-doctor-container {
+    margin:4px 40px 100px;
+    .manage-doctor-tilte {
+        text-align: center;
+        padding: 12px;
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .more-infor {
+        display: flex;
+        gap: 72px;
+        margin-bottom: 32px;
+        .content-left{
+            margin-left: 40px;
+            width: 50%;
+        }
+        .content-right {
+            margin-right: 40px;
+        }
+    }
+    .save-content-doctor {
+        border: none;
+        border-radius: 4px;
+        padding: 12px;
+        margin: 20px;
+    }
+}

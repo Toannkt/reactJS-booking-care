@@ -43,11 +43,11 @@
             }
         },
         "admin": {
-            "user-manage": "User manage",
-            "user-doctor": "User doctor",
-            "user-admin": "User admin",
-            "crud-redux": "CRUD redux",
-            "crud-user": "CRUD user",
+            "user-manage": "Manage App",
+            "manage-admins": "Manage Admin",
+            "manage-doctors": "Manage Doctors",
+            "manage-users": "Manage Users",
+            "crud-redux": "CRUD REDUX",
             "clinic": "Clinic",
             "manage-clinic": "Manage clinic",
             "speciality": "speciality",

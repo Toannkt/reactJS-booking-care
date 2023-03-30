@@ -1,3 +1,15 @@
 .section-doctor {
     background-color: #f5f5f5;
+    .option {
+        cursor: pointer;
+        &:hover {
+            color: rgb(248, 230, 95);
+        }
+        .image-description {
+            margin-top: 8px;
+        }
+        .text-description {
+            margin-top:8px;
+        }
+    }
 }

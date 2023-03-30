@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import CommonUtils from '../../../utils/CommonUtils';
-import { LANGUAGES } from '../../../utils/constant';
-import * as actions from '../../../store/actions';
+import CommonUtils from '../../../../utils/CommonUtils';
+import { LANGUAGES } from '../../../../utils/constant';
+import * as actions from '../../../../store/actions';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import TableManageUser from './TableManageUser';
-import './UserRedux.scss';
-class UserRedux extends Component {
+import './CrudRedux.scss';
+class CrudRedux extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -75,9 +75,9 @@ class UserRedux extends Component {
                 lastName: '',
                 address: '',
                 phoneNumber: '',
-                gender: arrGender && arrGender.length >0 ? arrGender[0].keyMap : '',
-                role: arrRole && arrRole.length >0 ? arrRole[0].keyMap : '',
-                position: arrPosition && arrPosition.length >0 ? arrPosition[0].keyMap : '',
+                gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : '',
+                role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : '',
+                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
                 avatar: '',
                 previewImage: '',
             });
@@ -86,7 +86,7 @@ class UserRedux extends Component {
 
     handleChooseAvatar = async (event) => {
         // const btn = document.querySelector("#choose-avatar");
-        console.log("chossing image")
+        console.log('chossing image');
         let file = event.target.files[0];
         if (file) {
             let base64 = await CommonUtils.getBase64(file);
@@ -176,7 +176,7 @@ class UserRedux extends Component {
         if (userData.image) {
             imageBase64 = new Buffer(userData.image, 'base64').toString('binary');
         }
-        console.log(userData.image)
+        console.log(userData.image);
         console.log(imageBase64);
         this.setState({
             isUpdate: true,
@@ -235,7 +235,7 @@ class UserRedux extends Component {
             gender,
             role,
             position,
-            avatar,
+            // avatar,
         } = this.state;
         // console.log('isUpdate: ', isUpdate);
         return (
@@ -513,4 +513,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(CrudRedux);

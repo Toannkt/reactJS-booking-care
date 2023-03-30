@@ -3,31 +3,31 @@ export const adminMenu = [
     {
         name: 'menu.admin.user-manage',
         menus: [
+            // subMenus: [
+            //   {
+            //     name: "menu.system.system-administrator.user-manage",
+            //     link: "/system/user-manage",
+            //   },
+            //   {
+            //     name: "menu.system.system-administrator.user-redux",
+            //     link: "/system/user-redux",
+            //   },
+            // ],
             {
-                name: 'menu.admin.user-doctor',
-                link: '/system/user-doctor',
-                // subMenus: [
-                //   {
-                //     name: "menu.system.system-administrator.user-manage",
-                //     link: "/system/user-manage",
-                //   },
-                //   {
-                //     name: "menu.system.system-administrator.user-redux",
-                //     link: "/system/user-redux",
-                //   },
-                // ],
+                name: 'menu.admin.manage-admins',
+                link: '/system/manage-admins',
             },
             {
-                name: 'menu.admin.user-admin',
-                link: '/system/user-admin',
+                name: 'menu.admin.manage-doctors',
+                link: '/system/manage-doctors',
+            },
+            {
+                name: 'menu.admin.manage-users',
+                link: '/system/manage-users',
             },
             {
                 name: 'menu.admin.crud-redux',
-                link: '/system/user-redux',
-            },
-            {
-                name: 'menu.admin.crud-user',
-                link: '/system/user-manage',
+                link: '/system/crud-redux',
             },
         ],
     },
