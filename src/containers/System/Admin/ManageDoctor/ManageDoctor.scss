@@ -19,10 +19,22 @@
             margin-right: 40px;
         }
     }
-    .save-content-doctor {
+    .create-content-doctor{
         border: none;
         border-radius: 4px;
         padding: 12px;
         margin: 20px;
+    }
+    .update-content-doctor {
+        border: none;
+        border-radius: 4px;
+        padding: 12px;
+        font-weight: 600;
+        color: rgb(254, 52, 52);
+        margin: 20px;
+        background-color: #fee226;
+        &:hover {
+            background-color: #f7d800;
+        }
     }
 }

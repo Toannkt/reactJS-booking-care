@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 // import { FormattedMessage } from "react-intl";
 import { connect } from 'react-redux';
 import './ManageDoctor.scss';
-
-import { LANGUAGES } from '../../../../utils/constant';
+import { LANGUAGES, CRUD_ACTIONS } from '../../../../utils/constant';
+import { getDetailDoctor } from '../../../../services/userService';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
@@ -21,7 +21,8 @@ class ManageDoctor extends Component {
             contentMarkdown: '',
             description: '',
             listDoctor: [],
-            selectedOption: null,
+            selectedOption: '',
+            hasOldData: false,
         };
     }
 
@@ -37,15 +38,25 @@ class ManageDoctor extends Component {
         }
         if (prevProps.lang !== this.props.lang) {
             let dataSelect = this.buildDataInputSelect(this.props.allDoctor);
-            console.log('componentDidUpdate: ', dataSelect);
             this.setState({
                 listDoctor: dataSelect,
             });
         }
     }
-
-    handleChange = (selectedOption) => {
-        this.setState({ selectedOption }, () => console.log(`Option selected:`, this.state.selectedOption));
+    buildDataInputSelect = (inputData) => {
+        let result = [];
+        let { lang } = this.props;
+        if (inputData && inputData.length > 0) {
+            inputData.map((item, index) => {
+                let object = {};
+                let labelEn = `${item.firstName} ${item.lastName}`;
+                let labelVi = `${item.lastName} ${item.firstName}`;
+                object.label = lang === LANGUAGES.VI ? labelVi : labelEn;
+                object.value = item.id;
+                return result.push(object);
+            });
+        }
+        return result;
     };
     ///////////////////////
     handleEditorChange = ({ html, text }) => {
@@ -62,36 +73,47 @@ class ManageDoctor extends Component {
     };
 
     handleSaveDetailDoctor = () => {
-        console.log('Save content doctor: ', this.state);
+        let { hasOldData } = this.state;
         this.props.createDetailDoctor({
             contentHTML: this.state.contentHTML,
             contentMarkdown: this.state.contentMarkdown,
             description: this.state.description,
             doctorId: this.state.selectedOption.value,
+            action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE,
         });
         this.setState({
             contentHTML: '',
             contentMarkdown: '',
             description: '',
-            doctorId: '',
+            selectedOption: '',
         });
     };
-    buildDataInputSelect = (inputData) => {
-        let result = [];
-        let { lang } = this.props;
-        if (inputData && inputData.length > 0) {
-            inputData.map((item, index) => {
-                let object = {};
-                let labelEn = `${item.firstName} ${item.lastName}`;
-                let labelVi = `${item.lastName} ${item.firstName}`;
-                object.label = lang === LANGUAGES.VI ? labelVi : labelEn;
-                object.value = item.id;
-                return result.push(object);
+
+    handleChangeSelect = async (selectedOption) => {
+        // this.props.getDetailDoctor(this.state.selectedOption.value);
+        this.setState({ selectedOption });
+        let res = await getDetailDoctor(selectedOption.value);
+        console.log(res);
+        if (res && res.errCode === 0 && res.data && res.data.Markdown && res.data.Markdown.contentHTML !== null) {
+            let markdown = res.data.Markdown;
+            this.setState({
+                contentHTML: markdown.contentHTML,
+                contentMarkdown: markdown.contentMarkdown,
+                description: markdown.description,
+                hasOldData: true,
+            });
+        } else {
+            this.setState({
+                contentHTML: '',
+                contentMarkdown: '',
+                description: '',
+                hasOldData: false,
             });
         }
-        return result;
     };
+
     render() {
+        let { hasOldData } = this.state;
         return (
             <div className="manage-doctor-container">
                 <div className="manage-doctor-tilte">Thêm thông tin người dùng</div>
@@ -100,7 +122,7 @@ class ManageDoctor extends Component {
                         <label>Chọn bác sĩ</label>
                         <Select
                             value={this.state.selectedOption}
-                            onChange={this.handleChange}
+                            onChange={this.handleChangeSelect}
                             options={this.state.listDoctor}
                         />
                     </div>
@@ -118,10 +140,18 @@ class ManageDoctor extends Component {
                         style={{ height: '500px' }}
                         renderHTML={(text) => mdParser.render(text)}
                         onChange={this.handleEditorChange}
+                        value={this.state.contentMarkdown}
                     />
                 </div>
-                <button onClick={() => this.handleSaveDetailDoctor()} className="save-content-doctor btn-primary ">
-                    Save detail doctor
+                <button
+                    onClick={() => this.handleSaveDetailDoctor()}
+                    className={
+                        hasOldData === false
+                            ? 'create-content-doctor btn-primary '
+                            : 'update-content-doctor btn-primary '
+                    }
+                >
+                    {hasOldData === false ? <span>Create detail doctor</span> : <span>Update detail doctor</span>}
                 </button>
             </div>
         );
@@ -132,6 +162,7 @@ const mapStateToProps = (state) => {
     return {
         lang: state.app.language,
         allDoctor: state.admin.allDoctor,
+        // detailDoctor: state.admin.detailDoctor,
     };
 };
 
@@ -139,6 +170,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllDoctor: () => dispatch(actions.fetchAllDoctorStart()),
         createDetailDoctor: (data) => dispatch(actions.createDetailDoctorStart(data)),
+        // getDetailDoctor: (id) => dispatch(actions.fetchDetailDoctorStart(id)),
     };
 };
 

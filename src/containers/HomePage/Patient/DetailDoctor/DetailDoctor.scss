@@ -5,17 +5,19 @@
         width: 72%;
         .introduction {
             height: 160px;
-            border: 1px solid red;
+            // border: 1px solid red;
             display: flex;
             margin-bottom: 20px;
             .wrap-image {
                 height: 100%;
                 width: 160px;
                 margin: 0 20px;
-                border: 1px solid #333;
+                // border: 1px solid #333;
                 .introduction-image {
-                    height: 100%;
+                    background-size: contain;
                     background-repeat: no-repeat;
+                    background-position: center;
+                    height: 100%;
                     border-radius: 50%;
                 }
             }
@@ -27,7 +29,7 @@
             display: flex;
             height: 250px;
             margin-bottom: 20px;
-            border-radius: 1px solid #333;
+            // border-radius: 1px solid #333;
             justify-content: space-between;
             .schedule-left {
                 width: 60%;
@@ -39,8 +41,12 @@
             }
         }
         .content-markdown {
-            height: 500px;
-            border: 1px solid red;
+            img {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: 100%;
+            }
         }
     }
 }

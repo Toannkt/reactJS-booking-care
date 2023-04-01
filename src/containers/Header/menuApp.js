@@ -29,6 +29,10 @@ export const adminMenu = [
                 name: 'menu.admin.crud-redux',
                 link: '/system/crud-redux',
             },
+            {
+                name: 'menu.doctor.manage-schedule',
+                link: '/doctor/manage-schedule',
+            },
         ],
     },
     // Manage cnilic
@@ -58,6 +62,18 @@ export const adminMenu = [
             {
                 name: 'menu.admin.manage-hanlebook',
                 link: '/system/manage-hanlebook',
+            },
+        ],
+    },
+];
+
+export const doctorMenu = [
+    {
+        name: 'menu.admin.user-manage',
+        menus: [
+            {
+                name: 'menu.doctor.manage-schedule',
+                link: '/doctor/manage-schedule/',
             },
         ],
     },

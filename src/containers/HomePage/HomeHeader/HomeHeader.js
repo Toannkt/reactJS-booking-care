@@ -23,7 +23,7 @@ class HomeHeader extends Component {
                         {this.props.headerLeftDetailDoctor === true && (
                             <div className="header-left-detail-doctor">
                                 <a href="/">
-                                    <i class="fas fa-arrow-left"></i>
+                                    <i className="fas fa-arrow-left"></i>
                                 </a>
                             </div>
                         )}

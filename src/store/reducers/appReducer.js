@@ -2,44 +2,44 @@ import actionTypes from '../actions/actionTypes';
 
 const initContentOfConfirmModal = {
     isOpen: false,
-    messageId: "",
+    messageId: '',
     handleFunc: null,
-    dataFunc: null
-}
+    dataFunc: null,
+};
 
-const initialState = {  
+const initialState = {
     started: true,
     language: 'vi',
-    systemMenuPath: '/system/user-manage',
+    systemMenuPath: '/home',
     contentOfConfirmModal: {
-        ...initContentOfConfirmModal
-    }
-}
+        ...initContentOfConfirmModal,
+    },
+};
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.APP_START_UP_COMPLETE: 
+        case actionTypes.APP_START_UP_COMPLETE:
             return {
                 ...state,
-                started: true
-            }
-        case actionTypes.SET_CONTENT_OF_CONFIRM_MODAL: 
+                started: true,
+            };
+        case actionTypes.SET_CONTENT_OF_CONFIRM_MODAL:
             return {
                 ...state,
                 contentOfConfirmModal: {
                     ...state.contentOfConfirmModal,
-                    ...action.contentOfConfirmModal
-                }
-            }
-        case actionTypes.CHANGE_LANGUAGE: 
-            console.log('check from redux appRedcer: ', action)
+                    ...action.contentOfConfirmModal,
+                },
+            };
+        case actionTypes.CHANGE_LANGUAGE:
+            console.log('check from redux appRedcer: ', action);
             return {
                 ...state,
-                language: action.language
-            }
+                language: action.language,
+            };
         default:
             return state;
     }
-}
+};
 
 export default appReducer;

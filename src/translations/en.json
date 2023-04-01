@@ -54,6 +54,9 @@
             "manage-speciality": "Manage speciality",
             "hanlebook": "Hanlebook",
             "manage-hanlebook": "Handlebook manage"
+        },
+        "doctor": {
+            "manage-schedule": "Manage Doctor's schedule"
         }
     },
     "manage-user": {

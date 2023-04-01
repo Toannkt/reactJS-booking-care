@@ -10,6 +10,7 @@ import {
     getTopDoctorHomeService,
     getAllDoctor,
     createDetailDoctor,
+    getDetailDoctor,
 } from '../../services/userService';
 import actionTypes from './actionTypes';
 
@@ -275,7 +276,7 @@ export const createDetailDoctorStart = (data) => {
             setTimeout(async () => {
                 let res = await createDetailDoctor(data);
                 if (res && res.errCode === 0) {
-                    toast.success('Created detail doctor successfully!');
+                    toast.success('Save detail doctor successfully!');
                     dispatch(createDetailDoctorSuccess());
                 } else {
                     toast.warning('Please check the information again!');
@@ -295,4 +296,30 @@ export const createDetailDoctorSuccess = () => ({
 
 export const createDetailDoctorFailed = () => ({
     type: actionTypes.CREATE_DETAIL_DOCTOR_FAILED,
+});
+
+//GET DETAIL DOCTOR BY ID
+export const fetchDetailDoctorStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getDetailDoctor(id);
+            if (res && res.errCode === 0) {
+                dispatch(fetchDetailDoctorSuccess(res.data));
+            } else {
+                dispatch(fetchDetailDoctorFailed());
+            }
+        } catch (e) {
+            console.log('error: ', e);
+            dispatch(fetchDetailDoctorFailed());
+        }
+    };
+};
+
+export const fetchDetailDoctorSuccess = (dataDetailDoctor) => ({
+    type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
+    dataDetailDoctor: dataDetailDoctor,
+});
+
+export const fetchDetailDoctorFailed = () => ({
+    type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
 });

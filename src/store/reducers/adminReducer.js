@@ -9,6 +9,7 @@ const initialState = {
     users: [],
     topArrDoctor: [],
     allDoctor: [],
+    detailDoctor: {},
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -176,6 +177,22 @@ const adminReducer = (state = initialState, action) => {
             };
         case actionTypes.CREATE_DETAIL_DOCTOR_FAILED:
             console.log('Create detail doctor failed:', action);
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_DETAIL_DOCTOR_START:
+            console.log('get detail doctor started:', action);
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS:
+            console.log('get detail doctor successfully: ', action);
+            state.detailDoctor = action.dataDetailDoctor;
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_DETAIL_DOCTOR_FAILED:
+            console.log('get detail doctor failed: ', action);
             return {
                 ...state,
             };
