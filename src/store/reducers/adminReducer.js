@@ -10,6 +10,7 @@ const initialState = {
     topArrDoctor: [],
     allDoctor: [],
     detailDoctor: {},
+    allScheduleTime: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -193,6 +194,22 @@ const adminReducer = (state = initialState, action) => {
             };
         case actionTypes.FETCH_DETAIL_DOCTOR_FAILED:
             console.log('get detail doctor failed: ', action);
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_START:
+            console.log('get allcode schedule time start: ', action);
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
+            // console.log('get allcode schedule time success:', action);
+            state.allScheduleTime = action.dataTime;
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED:
+            console.log('get allcode schedule time failed!', action);
             return {
                 ...state,
             };

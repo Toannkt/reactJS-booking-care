@@ -85,5 +85,11 @@
         "title": "Learn CRUD with Redux",
         "outstanding-doctor": "List of outstanding doctors last week",
         "more-infor": "See more"
+    },
+    "manage-schedule": {
+        "title": "Manage doctor's examination plan",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save": "Save infor"
     }
 }

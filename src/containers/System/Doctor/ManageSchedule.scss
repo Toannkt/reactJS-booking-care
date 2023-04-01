@@ -1,0 +1,52 @@
+.manage-schedule-container {
+    .m-s-title {
+        text-transform: uppercase;
+        margin: 16px 0;
+        font-weight: 600;
+        text-align: center;
+        font-size: 1.4rem;
+    }
+    .container {
+        width: 62%;
+        .icon-stethoscope {
+            margin-left: 4px;
+        }
+        .pick-hour-container {
+            width: 86%;
+            padding: 20px 0;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+
+            .btn-schedule {
+                line-height: normal;
+                &:hover {
+                    background-color: #faed98;
+                }
+                &.active {
+                    background-color: #ffdd00;
+                }
+            }
+        }
+        .input-date {
+            .flatpickr-input {
+                height: 38px;
+                width: 72%;
+            }
+            .icon-calendar {
+                margin-left: 4px;
+            }
+        }
+        button {
+            padding: 4px 16px;
+            border: 1px solid grey;
+        }
+        .btn-save-schedule {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+    }
+}

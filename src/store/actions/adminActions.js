@@ -323,3 +323,30 @@ export const fetchDetailDoctorSuccess = (dataDetailDoctor) => ({
 export const fetchDetailDoctorFailed = () => ({
     type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
 });
+
+// GET ALLCODE SCHEDULE TIME
+
+export const fetchAllCodeScheduleTimeStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('TIME');
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllCodeScheduleTimeSuccess(res.data));
+            } else {
+                dispatch(fetchAllCodeScheduleTimeFailed());
+            }
+        } catch (e) {
+            console.log('fetch allcode schedule time failed!', e);
+            dispatch(fetchAllCodeScheduleTimeFailed());
+        }
+    };
+};
+
+export const fetchAllCodeScheduleTimeSuccess = (data) => ({
+    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+    dataTime: data,
+});
+
+export const fetchAllCodeScheduleTimeFailed = () => ({
+    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+});
