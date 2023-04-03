@@ -11,6 +11,7 @@ class DetailDoctor extends Component {
         super(props);
         this.state = {
             detailDoctor: {},
+            currentDoctorId: -1,
         };
     }
 
@@ -18,6 +19,9 @@ class DetailDoctor extends Component {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
             this.props.getDetailDoctor(id);
+            this.setState({
+                currentDoctorId: id,
+            });
         }
     }
 
@@ -28,7 +32,6 @@ class DetailDoctor extends Component {
 
     render() {
         let detailDoctor = this.props.detailDoctor;
-        console.log(detailDoctor);
         const lang = this.props.lang;
         let positionVi = '';
         let positionEn = '';
@@ -36,7 +39,6 @@ class DetailDoctor extends Component {
             positionVi = detailDoctor.positionData.valueVi;
             positionEn = detailDoctor.positionData.valueEn;
         }
-        console.log(detailDoctor.id);
         return (
             <div className="detail-doctor">
                 <HomeHeader headerLeftDetailDoctor={true} contentCenter={true} contentRight={true} />

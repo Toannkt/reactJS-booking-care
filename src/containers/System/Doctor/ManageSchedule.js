@@ -61,6 +61,7 @@ class ManageSchedule extends Component {
     }
 
     handleChangeSelect = (selectedOption) => {
+        console.log('selectedOption: ', selectedOption);
         this.setState({
             selectedDoctor: selectedOption,
         });
@@ -123,6 +124,7 @@ class ManageSchedule extends Component {
     render() {
         let { rangeTime } = this.state;
         let { lang } = this.props;
+        let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
         return (
             <div className="manage-schedule-container">
                 <div className="m-s-title">
@@ -152,7 +154,7 @@ class ManageSchedule extends Component {
                                 onChange={this.handleChangeDatePicker}
                                 className="form-control"
                                 value={this.state.currentDate}
-                                minDate={new Date()}
+                                minDate={yesterday}
                             />
                         </div>
                         <div className="col-12 pick-hour-container">

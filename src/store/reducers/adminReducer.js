@@ -187,7 +187,7 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
             };
         case actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS:
-            console.log('get detail doctor successfully: ', action);
+            // console.log('get detail doctor successfully: ', action);
             state.detailDoctor = action.dataDetailDoctor;
             return {
                 ...state,
