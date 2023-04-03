@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeHeader from '../../HomePage/HomeHeader/HomeHeader';
+import { FormattedMessage } from 'react-intl';
 import Footer from '../../HomePage/Footer/Footer';
 import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils/constant';
@@ -74,7 +75,9 @@ class DetailDoctor extends Component {
                                     doctorIdFromParent={detailDoctor && detailDoctor.id ? detailDoctor.id : -1}
                                 />
                             </div>
-                            <div className="schedule-right">Địa chỉ khám</div>
+                            <div className="schedule-right">
+                                <FormattedMessage id="manage-schedule.examination-address" />
+                            </div>
                         </div>
                         <div className="content-markdown">
                             {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (

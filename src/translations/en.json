@@ -86,10 +86,22 @@
         "outstanding-doctor": "List of outstanding doctors last week",
         "more-infor": "See more"
     },
+    "manage-doctor": {
+        "add-infor-doctor": "Add information doctor",
+        "choose-doctor": "Choose doctor",
+        "create-detail": "Create new",
+        "update-detail": "Update"
+    },
     "manage-schedule": {
         "title": "Manage doctor's examination plan",
         "choose-doctor": "Choose doctor",
         "choose-date": "Choose date",
-        "save": "Save infor"
+        "save": "Save infor",
+        "calendar": "Calendar",
+        "none-calendar": "No appointment, please choose another date!",
+        "examination-address": "Examination address",
+        "choose": "Choose",
+        "and-put": "and put",
+        "calendar-free": "Calendar free"
     }
 }

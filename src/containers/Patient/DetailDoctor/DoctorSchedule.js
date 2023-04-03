@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import localization from 'moment/locale/vi';
+import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../utils/constant';
 import { getScheduleDoctorByDate } from '../../../services/userService';
 import './DoctorSchedule.scss';
@@ -109,7 +110,9 @@ class DoctorSchedule extends Component {
                 <div className="all-available-time">
                     <div className="text-calendar">
                         <i className="fas fa-calendar-alt icon-calendar-alt"></i>
-                        <span>Calendar</span>
+                        <span>
+                            <FormattedMessage id="manage-schedule.calendar" />
+                        </span>
                     </div>
                     <div className="time-content col-12">
                         {allAvailableTime && allAvailableTime.length > 0 ? (
@@ -119,8 +122,20 @@ class DoctorSchedule extends Component {
                                 return <button key={index}>{timeDisplay}</button>;
                             })
                         ) : (
-                            <div className="none-calendar">Không có lịch khám, vui lòng chọn ngày khác!</div>
+                            <div className="none-calendar">
+                                <FormattedMessage id="manage-schedule.none-calendar" />
+                            </div>
                         )}
+                    </div>
+                    <div className="calendar-free">
+                        <span>
+                            <FormattedMessage id="manage-schedule.choose" />
+                        </span>
+                        <i class="fas fa-hand-pointer icon-choose"></i>
+                        <span>
+                            <FormattedMessage id="manage-schedule.and-put" />
+                            (<FormattedMessage id="manage-schedule.calendar-free" /> 0<sup>đ</sup>)
+                        </span>
                     </div>
                 </div>
             </div>

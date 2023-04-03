@@ -9,6 +9,7 @@ import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import * as actions from '../../../../store/actions';
 import Select from 'react-select';
+import { FormattedMessage } from 'react-intl';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -116,10 +117,14 @@ class ManageDoctor extends Component {
         let { hasOldData } = this.state;
         return (
             <div className="manage-doctor-container">
-                <div className="manage-doctor-tilte">Thêm thông tin người dùng</div>
+                <div className="manage-doctor-tilte">
+                    <FormattedMessage id="manage-doctor.add-infor-doctor" />
+                </div>
                 <div className="more-infor">
                     <div className="content-left">
-                        <label>Chọn bác sĩ</label>
+                        <label>
+                            <FormattedMessage id="manage-doctor.choose-doctor" />
+                        </label>
                         <Select
                             value={this.state.selectedOption}
                             onChange={this.handleChangeSelect}
@@ -131,9 +136,7 @@ class ManageDoctor extends Component {
                         value={this.state.description}
                         className="content-right form-control"
                         rows="4"
-                    >
-                        aaaa
-                    </textarea>
+                    ></textarea>
                 </div>
                 <div className="manage-doctor-editor">
                     <MdEditor
@@ -151,7 +154,15 @@ class ManageDoctor extends Component {
                             : 'update-content-doctor btn-primary '
                     }
                 >
-                    {hasOldData === false ? <span>Create detail doctor</span> : <span>Update detail doctor</span>}
+                    {hasOldData === false ? (
+                        <span>
+                            <FormattedMessage id="manage-doctor.create-detail" />
+                        </span>
+                    ) : (
+                        <span>
+                            <FormattedMessage id="manage-doctor.update-detail" />
+                        </span>
+                    )}
                 </button>
             </div>
         );
