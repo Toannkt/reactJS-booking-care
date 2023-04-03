@@ -8,7 +8,7 @@ import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authenticati
 import { path } from '../utils';
 import Home from '../routes/Home';
 import HomePage from './HomePage/HomePage.js';
-import DetailDoctor from './HomePage/Patient/DetailDoctor/DetailDoctor';
+import DetailDoctor from './Patient/DetailDoctor/DetailDoctor';
 import Login from './Auth/Login';
 import System from '../routes/System';
 import CustomScrollbars from '../components/CustomScrollbars';

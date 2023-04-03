@@ -7,8 +7,10 @@ import { CRUD_ACTIONS, LANGUAGES, dateFormat } from '../../../utils';
 import DatePicker from '../../../components/Input/DatePicker';
 import './ManageSchedule.scss';
 import { toast } from 'react-toastify';
+import { saveBulkScheduleDoctor } from '../../../services/userService';
 import _ from 'lodash';
 import moment from 'moment';
+
 class ManageSchedule extends Component {
     constructor(props) {
         super(props);
@@ -81,7 +83,7 @@ class ManageSchedule extends Component {
         }
     };
 
-    handleSaveSchedule = () => {
+    handleSaveSchedule = async () => {
         let { rangeTime, selectedDoctor, currentDate } = this.state;
         let result = [];
         if (!currentDate) {
@@ -92,15 +94,16 @@ class ManageSchedule extends Component {
             toast.error('Invalid selected doctor! Please select a doctor relevant.');
             return;
         }
-        let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+        // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+        let formatedDate = new Date(currentDate).getTime();
         if (rangeTime && rangeTime.length > 0) {
             let selectedTime = rangeTime.filter((item) => item.isSelected === true);
             if (selectedTime && selectedTime.length > 0) {
                 selectedTime.map((schedule, index) => {
                     let object = {};
-                    object.doctorId = selectedDoctor.doctorId;
+                    object.doctorId = selectedDoctor.value;
                     object.date = formatedDate;
-                    object.time = schedule.keyMap;
+                    object.timeType = schedule.keyMap;
                     result.push(object);
                 });
             } else {
@@ -108,8 +111,14 @@ class ManageSchedule extends Component {
                 return;
             }
         }
+        let res = await saveBulkScheduleDoctor({
+            arrSchedule: result,
+            doctorId: selectedDoctor.value,
+            formatedDate: formatedDate,
+        });
+        console.log('result: ', result);
         toast.success('Successfully booked an apoitment!');
-        return result;
+        return res;
     };
     render() {
         let { rangeTime } = this.state;

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HomeHeader from '../../HomeHeader/HomeHeader';
-import Footer from '../../Footer/Footer';
-import * as actions from '../../../../store/actions';
-import { LANGUAGES } from '../../../../utils/constant';
+import HomeHeader from '../../HomePage/HomeHeader/HomeHeader';
+import Footer from '../../HomePage/Footer/Footer';
+import * as actions from '../../../store/actions';
+import { LANGUAGES } from '../../../utils/constant';
+import DoctorSchedule from './DoctorSchedule';
 import './DetailDoctor.scss';
 class DetailDoctor extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class DetailDoctor extends Component {
             positionVi = detailDoctor.positionData.valueVi;
             positionEn = detailDoctor.positionData.valueEn;
         }
-        console.log(detailDoctor.description);
+        console.log(detailDoctor.id);
         return (
             <div className="detail-doctor">
                 <HomeHeader headerLeftDetailDoctor={true} contentCenter={true} contentRight={true} />
@@ -66,7 +67,11 @@ class DetailDoctor extends Component {
                             </div>
                         </div>
                         <div className="schedule">
-                            <div className="schedule-left">Thời gian khám và đăt lịch</div>
+                            <div className="schedule-left">
+                                <DoctorSchedule
+                                    doctorIdFromParent={detailDoctor && detailDoctor.id ? detailDoctor.id : -1}
+                                />
+                            </div>
                             <div className="schedule-right">Địa chỉ khám</div>
                         </div>
                         <div className="content-markdown">
