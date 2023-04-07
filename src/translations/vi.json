@@ -90,7 +90,13 @@
         "add-infor-doctor": "Thêm thông tin bác sĩ",
         "choose-doctor": "Chọn bác sĩ",
         "create-detail": "Tạo mới",
-        "update-detail": "Cập nhật"
+        "update-detail": "Cập nhật",
+        "choose-price": "Chọn giá",
+        "choose-payment": "Chọn phương thức thanh toán",
+        "choose-province": "Chọn tỉnh",
+        "clinic-name": "Tên phòng khám",
+        "clinic-address": "Địa chỉ phòng khám",
+        "note": "Ghi chú"
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",

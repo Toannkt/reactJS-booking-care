@@ -90,7 +90,13 @@
         "add-infor-doctor": "Add information doctor",
         "choose-doctor": "Choose doctor",
         "create-detail": "Create new",
-        "update-detail": "Update"
+        "update-detail": "Update",
+        "choose-price": "Choose price",
+        "choose-payment": "Choose method payment",
+        "choose-province": "Choose province",
+        "clinic-name": "Clinic name",
+        "clinic-address": "Clinic address",
+        "note": "Note"
     },
     "manage-schedule": {
         "title": "Manage doctor's examination plan",

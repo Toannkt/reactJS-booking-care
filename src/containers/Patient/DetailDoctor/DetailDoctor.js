@@ -5,7 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import Footer from '../../HomePage/Footer/Footer';
 import * as actions from '../../../store/actions';
 import { LANGUAGES } from '../../../utils/constant';
-import DoctorSchedule from './DoctorSchedule';
+import DoctorSchedule from './DoctorSchedule/DoctorSchedule';
+import DoctorExtra from './DoctorExtra/DoctorExtra';
+
 import './DetailDoctor.scss';
 class DetailDoctor extends Component {
     constructor(props) {
@@ -71,12 +73,10 @@ class DetailDoctor extends Component {
                         </div>
                         <div className="schedule">
                             <div className="schedule-left">
-                                <DoctorSchedule
-                                    doctorIdFromParent={detailDoctor && detailDoctor.id ? detailDoctor.id : -1}
-                                />
+                                <DoctorSchedule doctorIdFromParent={this.state.currentDoctorId} />
                             </div>
                             <div className="schedule-right">
-                                <FormattedMessage id="manage-schedule.examination-address" />
+                                <DoctorExtra doctorIdFromParent={this.state.currentDoctorId} />
                             </div>
                         </div>
                         <div className="content-markdown">

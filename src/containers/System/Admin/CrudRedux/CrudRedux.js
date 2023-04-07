@@ -39,6 +39,7 @@ class CrudRedux extends Component {
         this.props.getGenderStart();
         this.props.getPositionStart();
         this.props.getRoleStart();
+        window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -64,6 +65,7 @@ class CrudRedux extends Component {
             });
         }
         if (prevProps.users !== this.props.users) {
+            console.log('test');
             let arrGender = this.props.dataGender;
             let arrPosition = this.props.dataPosition;
             let arrRole = this.props.dataRole;
@@ -213,6 +215,9 @@ class CrudRedux extends Component {
         });
     };
     render() {
+        // const customScrollbar = document.getElementsByClassName('custom-scrollbar');
+        // console.log('customScrollbar: ', customScrollbar);
+
         const lang = this.props.lang;
         const genders = this.props.dataGender;
         const isLoadingGender = this.props.isLoadingGender;
@@ -237,6 +242,8 @@ class CrudRedux extends Component {
             position,
             // avatar,
         } = this.state;
+        console.log(lastName);
+
         // console.log('isUpdate: ', isUpdate);
         return (
             <div className="user-redux-container">
