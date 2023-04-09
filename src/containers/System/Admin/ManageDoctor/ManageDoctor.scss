@@ -44,4 +44,15 @@
             background-color: #f7d800;
         }
     }
+    .row {
+        margin: 0 120px;
+        margin-bottom: 40px;
+        .select-specialty {
+            padding: 0;
+        }
+        .select-clinic {
+            padding: 0;
+            margin-left: 144px;
+        }
+    }
 }

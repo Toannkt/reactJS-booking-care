@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { LANGUAGES } from '../../../../utils';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import { getDetailDoctor } from '../../../../services/userService';
 import _ from 'lodash';
@@ -67,7 +68,7 @@ class ProfileDoctor extends Component {
         let nameVi = '',
             nameEn = '';
         let { dataProfile } = this.state;
-        let { lang, isShowDescriptionDoctor, dataTime } = this.props;
+        let { lang, isShowDescriptionDoctor, dataTime, isShowPrice, isShowLinkDetail, doctorId } = this.props;
 
         if (dataProfile && dataProfile.positionData) {
             nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
@@ -95,27 +96,34 @@ class ProfileDoctor extends Component {
                         </div>
                     </div>
                 </div>
-                <span className="price">
-                    Giá khám:
-                    {dataProfile.Doctor_Infor && lang === LANGUAGES.VI && (
-                        <NumberFormat
-                            className="currency"
-                            value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            suffix={'VND'}
-                        />
-                    )}
-                    {dataProfile.Doctor_Infor && lang === LANGUAGES.EN && (
-                        <NumberFormat
-                            className="currency"
-                            value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            suffix={'$'}
-                        />
-                    )}
-                </span>
+                {isShowLinkDetail === true && (
+                    <div className="view-detail-doctor">
+                        <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
+                    </div>
+                )}
+                {isShowPrice === true && (
+                    <span className="price">
+                        Giá khám:
+                        {dataProfile.Doctor_Infor && lang === LANGUAGES.VI && (
+                            <NumberFormat
+                                className="currency"
+                                value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
+                                displayType={'text'}
+                                thousandSeparator={true}
+                                suffix={'VND'}
+                            />
+                        )}
+                        {dataProfile.Doctor_Infor && lang === LANGUAGES.EN && (
+                            <NumberFormat
+                                className="currency"
+                                value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
+                                displayType={'text'}
+                                thousandSeparator={true}
+                                suffix={'$'}
+                            />
+                        )}
+                    </span>
+                )}
             </div>
         );
     }

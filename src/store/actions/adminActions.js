@@ -11,6 +11,7 @@ import {
     getAllDoctor,
     createDetailDoctor,
     getDetailDoctor,
+    getAllSpecialty,
 } from '../../services/userService';
 import actionTypes from './actionTypes';
 
@@ -359,6 +360,7 @@ export const fetchAllRequiredDoctorInforStart = () => {
             let resPrice = await getAllCodeService('PRICE');
             let resProvince = await getAllCodeService('PROVINCE');
             let resPayment = await getAllCodeService('PAYMENT');
+            let resSpecialty = await getAllSpecialty();
 
             if (
                 resPrice &&
@@ -366,12 +368,15 @@ export const fetchAllRequiredDoctorInforStart = () => {
                 resPayment &&
                 resPayment.errCode === 0 &&
                 resProvince &&
-                resProvince.errCode === 0
+                resProvince.errCode === 0 &&
+                resSpecialty &&
+                resSpecialty.errCode === 0
             ) {
                 let allRequiredData = {
                     resPrice: resPrice.data,
                     resPayment: resPayment.data,
                     resProvince: resProvince.data,
+                    resSpecialty: resSpecialty.data,
                 };
                 dispatch(fetchAllRequiredDoctorInforSuccess(allRequiredData));
             } else {

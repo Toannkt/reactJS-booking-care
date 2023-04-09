@@ -50,8 +50,8 @@
             "crud-redux": "CRUD REDUX",
             "clinic": "Phòng khám",
             "manage-clinic": "Quản lý phòng khám",
-            "speciality": "Chuyên khoa",
-            "manage-speciality": "Quản lý chuyên khoa",
+            "specialty": "Chuyên khoa",
+            "manage-specialty": "Quản lý chuyên khoa",
             "hanlebook": "Cẩm nang",
             "manage-hanlebook": "Quản lý cẩm nang"
         },

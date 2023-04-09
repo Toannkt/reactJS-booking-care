@@ -5,6 +5,8 @@ import ManageUser from '../containers/System/ManageUser';
 import CrudRedux from '../containers/System/Admin/CrudRedux/CrudRedux';
 import ManageAdmin from '../containers/System/ManageAdmin';
 import ManageDoctor from '../containers/System/Admin/ManageDoctor/ManageDoctor';
+import ManageSpecialty from '../containers/System/Specialty/ManageSpecialty';
+import ManageClinic from '../containers/System/Clinic/ManageClinic';
 import Header from '../containers/Header/Header';
 class System extends Component {
     render() {
@@ -19,6 +21,8 @@ class System extends Component {
                             <Route path="/system/crud-redux" component={CrudRedux} />
                             <Route path="/system/manage-admins" component={ManageAdmin} />
                             <Route path="/system/manage-doctors" component={ManageDoctor} />
+                            <Route path="/system/manage-specialty" component={ManageSpecialty} />
+                            <Route path="/system/manage-clinic" component={ManageClinic} />
                             <Route
                                 component={() => {
                                     return <Redirect to={systemMenuPath} />;

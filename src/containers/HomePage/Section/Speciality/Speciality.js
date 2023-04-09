@@ -7,8 +7,32 @@ import './Speciality.scss';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { getAllSpecialty } from '../../../../services/userService';
+import { withRouter } from 'react-router';
+
 class Speciality extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataSpecialty: [],
+        };
+    }
+
+    async componentDidMount() {
+        let res = await getAllSpecialty();
+        if (res && res.errCode === 0) {
+            this.setState({
+                dataSpecialty: res.data ? res.data : [],
+            });
+        }
+    }
+    handleViewDetailSpecialty = (item) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-specialty/${item.id}`);
+        }
+    };
     render() {
+        const { dataSpecialty } = this.state;
         let settings = {
             dots: false,
             infinite: false,
@@ -50,80 +74,27 @@ class Speciality extends Component {
                         <div className="title-section">Chuyên khoa phổ biến</div>
                         <button className="btn-section">Xem thêm</button>
                     </div>
-                    <div className="predict-body">
+                    <div className="section-body">
                         <Slider {...settings}>
-                            <div className="option">
-                                <div
-                                    className="image-description"
-                                    style={{
-                                        backgroundImage: `url('https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg')`,
-                                    }}
-                                ></div>
-                                <span className="text-description">text description</span>
-                            </div>
-                            <div className="option">
-                                <div
-                                    className="image-description"
-                                    style={{
-                                        backgroundImage: `url('https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg')`,
-                                    }}
-                                ></div>
-                                <span className="text-description">text description</span>
-                            </div>
-                            <div className="option">
-                                <div
-                                    className="image-description"
-                                    style={{
-                                        backgroundImage: `url('https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg')`,
-                                    }}
-                                ></div>
-                                <span className="text-description">text description</span>
-                            </div>
-                            <div className="option">
-                                <div
-                                    className="image-description"
-                                    style={{
-                                        backgroundImage: `url('https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg')`,
-                                    }}
-                                ></div>
-                                <span className="text-description">text description</span>
-                            </div>
-                            <div className="option">
-                                <div
-                                    className="image-description"
-                                    style={{
-                                        backgroundImage: `url('https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg')`,
-                                    }}
-                                ></div>
-                                <span className="text-description">text description</span>
-                            </div>
-                            <div className="option">
-                                <div
-                                    className="image-description"
-                                    style={{
-                                        backgroundImage: `url('https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg')`,
-                                    }}
-                                ></div>
-                                <span className="text-description">text description</span>
-                            </div>
-                            <div className="option">
-                                <div
-                                    className="image-description"
-                                    style={{
-                                        backgroundImage: `url('https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg')`,
-                                    }}
-                                ></div>
-                                <span className="text-description">text description</span>
-                            </div>
-                            <div className="option">
-                                <div
-                                    className="image-description"
-                                    style={{
-                                        backgroundImage: `url('https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg')`,
-                                    }}
-                                ></div>
-                                <span className="text-description">text description</span>
-                            </div>
+                            {dataSpecialty &&
+                                dataSpecialty.length > 0 &&
+                                dataSpecialty.map((item, index) => {
+                                    return (
+                                        <div
+                                            className="option"
+                                            key={index}
+                                            onClick={() => this.handleViewDetailSpecialty(item)}
+                                        >
+                                            <div
+                                                className="image-description"
+                                                style={{
+                                                    backgroundImage: `url(${item.image})`,
+                                                }}
+                                            ></div>
+                                            <span className="specialty-name">{item.name}</span>
+                                        </div>
+                                    );
+                                })}
                         </Slider>
                     </div>
                 </div>
@@ -143,4 +114,4 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Speciality);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Speciality));

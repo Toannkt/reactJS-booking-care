@@ -2,17 +2,17 @@
     .title {
         text-transform: uppercase;
         font-size: 1.4rem;
-        color:aqua;
+        color: aqua;
     }
     .container {
         margin-bottom: 100px;
-        .form-redux{
-            .wrap-form{
+        .form-redux {
+            .wrap-form {
                 display: flex;
                 flex-direction: column;
                 justify-items: center;
                 align-items: center;
-                margin:auto;
+                margin: auto;
                 .header-form {
                     padding-top: 10px;
                 }
@@ -32,17 +32,17 @@
                             display: flex;
                             .icon-upload {
                                 font-size: 1.6rem;
-                                padding:16px;
+                                padding: 16px;
                                 cursor: pointer;
                                 background-color: #ddd;
                                 &:hover {
-                                    opacity: 0.8   ;
+                                    opacity: 0.8;
                                 }
                             }
-                            .contain-avatar{
-                                width:100%;
-                                box-shadow: 1px 1px 2px rgb(221, 221, 221);
-                                margin-left:24px;
+                            .contain-avatar {
+                                width: 100%;
+                                box-shadow: 0 1px 6px #20212447;
+                                margin-left: 24px;
                                 .name-image {
                                     display: flex;
                                     justify-content: center;
@@ -62,8 +62,8 @@
             }
             .submit {
                 margin: auto;
-                .form-check{
-                    margin-bottom:12px;
+                .form-check {
+                    margin-bottom: 12px;
                 }
                 .wrap-button {
                     display: flex;
@@ -82,7 +82,6 @@
 
                         &:hover {
                             background-color: rgb(255, 242, 0);
-
                         }
                     }
                     .cancel {
@@ -99,8 +98,8 @@
             }
         }
     }
-    .table-manage-user{
+    .table-manage-user {
         margin: auto;
-        margin-bottom:200px;
+        margin-bottom: 200px;
     }
 }

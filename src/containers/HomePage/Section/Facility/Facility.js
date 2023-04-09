@@ -7,8 +7,37 @@ import './Facility.scss';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+// import { getAllClinic } from '../../../../services/userService';
+// import { withRouter } from 'react-router';
 class Facility extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataClinic: [],
+        };
+    }
+    // async componentDidMount() {
+    //     let res = await getAllClinic();
+    //     if (res && res.errCode == 0) {
+    //         this.setState({
+    //             dataClinic: res.data ? res.data : [],
+    //         });
+    //     }
+    // }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.lang !== prevProps.lang) {
+        }
+    }
+
+    handleViewDetailClinic = (clinic) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-clinic/${clinic.id}`);
+        }
+    };
+
     render() {
+        let { dataClinic } = this.state;
         let settings = {
             dots: false,
             infinite: false,
@@ -50,7 +79,7 @@ class Facility extends Component {
                         <div className="title-section">Cơ sở y tế nổi bật</div>
                         <button className="btn-section">Xem thêm</button>
                     </div>
-                    <div className="predict-body">
+                    <div className="section-body">
                         <Slider {...settings}>
                             <div className="option">
                                 <div

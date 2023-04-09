@@ -50,8 +50,8 @@
             "crud-redux": "CRUD REDUX",
             "clinic": "Clinic",
             "manage-clinic": "Manage clinic",
-            "speciality": "speciality",
-            "manage-speciality": "Manage speciality",
+            "specialty": "specialty",
+            "manage-specialty": "Manage specialty",
             "hanlebook": "Hanlebook",
             "manage-hanlebook": "Handlebook manage"
         },

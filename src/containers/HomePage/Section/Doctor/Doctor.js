@@ -80,7 +80,7 @@ class Doctor extends Component {
                         </div>
                         <button className="btn-section">{<FormattedMessage id={'manage-user.more-infor'} />}</button>
                     </div>
-                    <div className="predict-body">
+                    <div className="section-body">
                         <Slider {...settings}>
                             {arrDoctor &&
                                 arrDoctor.length > 0 &&

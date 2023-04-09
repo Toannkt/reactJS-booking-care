@@ -47,11 +47,11 @@ export const adminMenu = [
     },
     // Manage speciality
     {
-        name: 'menu.admin.speciality',
+        name: 'menu.admin.specialty',
         menus: [
             {
-                name: 'menu.admin.manage-speciality',
-                link: '/system/manage-speciality',
+                name: 'menu.admin.manage-specialty',
+                link: '/system/manage-specialty',
             },
         ],
     },

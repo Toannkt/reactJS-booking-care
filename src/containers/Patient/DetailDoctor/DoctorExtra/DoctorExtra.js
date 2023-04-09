@@ -16,7 +16,16 @@ class DoctorExtra extends Component {
         };
     }
 
-    async componentDidMount() {}
+    async componentDidMount() {
+        if (this.props.doctorIdFromParent) {
+            const res = await getExtraInforDoctorById(this.props.doctorIdFromParent);
+            if (res && res.errCode === 0) {
+                this.setState({
+                    extraInfor: res.data,
+                });
+            }
+        }
+    }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.lang !== prevProps.lang) {
@@ -108,6 +117,7 @@ class DoctorExtra extends Component {
                                 <div className="note">{extraInfor && extraInfor.note ? extraInfor.note : ''}</div>
                             </div>
                             <div className="payment">
+                                Method payment:
                                 {extraInfor && extraInfor.paymentTypeData && lang === LANGUAGES.VI
                                     ? extraInfor.paymentTypeData.valueVi
                                     : ''}

@@ -50,7 +50,7 @@ class Handbook extends Component {
                         <div className="title-section">Cẩm nang</div>
                         <button className="btn-section">Xem thêm</button>
                     </div>
-                    <div className="predict-body">
+                    <div className="section-body">
                         <Slider {...settings}>
                             <div className="option">
                                 <div
